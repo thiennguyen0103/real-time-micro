@@ -3,9 +3,8 @@
 import { api } from "@/convex/_generated/api";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { cn } from "@/lib/utils";
-import { useOrganization } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
-import React from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 interface NewBoardButtonProps {
@@ -14,18 +13,17 @@ interface NewBoardButtonProps {
 }
 
 const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
-  const { organization } = useOrganization();
+  const router = useRouter();
   const { mutate, pending } = useApiMutation(api.board.create);
 
   const onCreate = () => {
-    if (!organization) return;
-
     mutate({
-      orgId: organization.id,
+      orgId: orgId,
       title: "Untitled",
     })
       .then((id) => {
         toast.success("Board created");
+        router.push(`/board/${id}`);
       })
       .catch(() => {
         toast.error("Failed to create board");
