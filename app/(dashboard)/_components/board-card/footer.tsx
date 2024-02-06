@@ -19,6 +19,14 @@ const Footer = ({
   onClick,
   title,
 }: FooterProps) => {
+  const onHandleClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    onClick();
+  };
   return (
     <div className="relative bg-white p-3">
       <p className="max-w-[calc(100% - 20px)] truncate text-[13px]">{title}</p>
@@ -30,6 +38,7 @@ const Footer = ({
           "absolute right-3 top-3 text-muted-foreground opacity-0 transition hover:text-yellow-400 group-hover:opacity-100",
           disabled && "cursor-not-allowed opacity-75",
         )}
+        onClick={onHandleClick}
       >
         <Star
           className={cn(

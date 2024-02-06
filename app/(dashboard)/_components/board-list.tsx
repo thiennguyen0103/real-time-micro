@@ -1,13 +1,12 @@
 "use client";
 
-import React from "react";
-import EmptySearch from "./empty/empty-search";
-import EmptyFavorites from "./empty/empty-favorites";
-import EmptyBoards from "./empty/empty-boards";
-import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
+import { useQuery } from "convex/react";
 import BoardCard from "./board-card";
 import NewBoardButton from "./button/new-board-button";
+import EmptyBoards from "./empty/empty-boards";
+import EmptyFavorites from "./empty/empty-favorites";
+import EmptySearch from "./empty/empty-search";
 
 interface BoardListProps {
   orgId: string;
@@ -66,7 +65,7 @@ const BoardList = ({ orgId, query }: BoardListProps) => {
             authorName={board.authorName}
             createdAt={board._creationTime}
             orgId={board.orgId}
-            isFavorite={false}
+            isFavorite={board.isFavorite}
           />
         ))}
       </div>
