@@ -8,7 +8,6 @@ import { Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React from "react";
 
 const font = Poppins({
   subsets: ["latin"],
@@ -20,7 +19,7 @@ const OrgSidebar = () => {
   const favorites = searchParams.get("favorites");
 
   return (
-    <div className="w-org-sidebar hidden flex-col space-y-6 pl-5 pt-5 lg:flex">
+    <div className="hidden w-org-sidebar flex-col space-y-6 pl-5 pt-5 lg:flex">
       <Link href="/">
         <div className="flex items-center gap-x-2">
           <Image src="/logo.svg" alt="Logo" height={60} width={60} />
