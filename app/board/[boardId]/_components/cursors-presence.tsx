@@ -1,10 +1,16 @@
 "use client";
 
-import { memo } from "react";
+import { Fragment, memo } from "react";
 import Cursors from "./cursors";
+import Drafts from "./drafts";
 
 const CursorsPresence = memo(() => {
-  return <Cursors />;
+  return (
+    <Fragment>
+      <Drafts />
+      <Cursors />
+    </Fragment>
+  );
 });
 
 CursorsPresence.displayName = "CursorsPresence";
